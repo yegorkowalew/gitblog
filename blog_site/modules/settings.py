@@ -1,0 +1,1 @@
+blog_folder = "C:\\work\\gitblog\\blog"
