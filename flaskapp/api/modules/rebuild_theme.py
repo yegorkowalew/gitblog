@@ -4,7 +4,7 @@ from settings import blog_folder, theme_json_file
 import os
 import json
 
-themes = []
+# themes = []
 
 class Theme:
     def __init__(self, title_ru="", title_slug="", description="", summ=0, last_update=""):
@@ -15,6 +15,7 @@ class Theme:
         self.last_update = last_update
     
 def rebuild_theme():
+    themes = []
     f = open(theme_file)
     strings = f.readlines()
     for i in strings:
@@ -28,12 +29,12 @@ def rebuild_theme():
 
     json_list = []
     for i in themes:
-            json_list.append({
-                'title_ru': i.title_ru,
-                'title_slug': i.title_slug,
-                'description': i.description,
-                'summ': i.summ,
-                'last_update': i.last_update
-            })
+        json_list.append({
+            'title_ru': i.title_ru,
+            'title_slug': i.title_slug,
+            'description': i.description,
+            'summ': i.summ,
+            'last_update': i.last_update
+        })
     with open(theme_json_file, 'w') as file:
         json.dump(json_list, file, indent=2, ensure_ascii=False)

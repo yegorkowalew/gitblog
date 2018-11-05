@@ -11,23 +11,6 @@ import pickle
 
 api = Blueprint('api', __name__, template_folder='templates')
 
-tasks = [
-    {
-        'name_ru': u'Программирование',
-        'name_slug': u'programming',
-        'summ': 2, 
-        'description': u'Программирование на Python, JavaScript.',
-        'head_img': '/static/img/themes/programming.jpg'
-    },
-        {
-        'name_ru': u'Домашнее',
-        'name_slug': u'home',
-        'summ': 2, 
-        'description': u'Все что связано с домом.',
-        'head_img': '/static/img/themes/home.jpg'
-    },
-]
-
 def rebuild_status(status_file):
     last_rebuild = {}
     f = open(status_file)
@@ -52,9 +35,8 @@ def show(page):
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
     data = json.load(open(theme_json_file))
-    # data = pickle.load(open(theme_json_file,"r"))
+    print(data)
     return jsonify({'themes': data})
-
 
 
 @api.route('/v1.0/last_rebuild', methods=['GET'])

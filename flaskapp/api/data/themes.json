@@ -3,69 +3,6 @@
     "title_ru": "Программирование",
     "title_slug": "programmirovanie",
     "description": "Программирование на Python, JavaScript.",
-    "summ": 4,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Домашнее",
-    "title_slug": "domashnee",
-    "description": "Все что связано с домом.",
-    "summ": 4,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Электроника",
-    "title_slug": "elektronika",
-    "description": "Электронные поделки. Связанные с умным домом и тому-подобными вещами.",
-    "summ": 0,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Программирование",
-    "title_slug": "programmirovanie",
-    "description": "Программирование на Python, JavaScript.",
-    "summ": 3,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Домашнее",
-    "title_slug": "domashnee",
-    "description": "Все что связано с домом.",
-    "summ": 3,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Электроника",
-    "title_slug": "elektronika",
-    "description": "Электронные поделки. Связанные с умным домом и тому-подобными вещами.",
-    "summ": 0,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Программирование",
-    "title_slug": "programmirovanie",
-    "description": "Программирование на Python, JavaScript.",
-    "summ": 2,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Домашнее",
-    "title_slug": "domashnee",
-    "description": "Все что связано с домом.",
-    "summ": 2,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Электроника",
-    "title_slug": "elektronika",
-    "description": "Электронные поделки. Связанные с умным домом и тому-подобными вещами.",
-    "summ": 0,
-    "last_update": ""
-  },
-  {
-    "title_ru": "Программирование",
-    "title_slug": "programmirovanie",
-    "description": "Программирование на Python, JavaScript.",
     "summ": 1,
     "last_update": ""
   },
