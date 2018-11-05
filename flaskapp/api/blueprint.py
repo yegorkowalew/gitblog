@@ -3,6 +3,7 @@ import io
 from datetime import datetime
 import time
 from settings import status_file
+from api.modules.rebuild_theme import rebuild_theme
 api = Blueprint('api', __name__, template_folder='templates')
 
 tasks = [
@@ -54,9 +55,9 @@ def get_last_rebuild():
 
 @api.route('/v1.0/rebuild', methods=['GET'])
 def get_rebuild():
+    rebuild_theme()
     status = True
     rebuild = {
             'status': status
             }
     return jsonify({'rebuild': rebuild})
-
