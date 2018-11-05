@@ -1,7 +1,8 @@
 from settings import theme_file
 from pytils import translit
-from settings import blog_folder
+from settings import blog_folder, theme_json_file
 import os
+import json
 
 themes = []
 
@@ -13,10 +14,6 @@ class Theme:
         self.summ = summ
         self.last_update = last_update
     
-    def all(self):
-        # return '\n%s (ru);\n%s (en);\n%s (last update);\n%s (desk);\n%s (summ);' % (self.title_ru, self.title_en, self.last_update, self.description, self.summ)
-        return self.title_ru
-
 def rebuild_theme():
     f = open(theme_file)
     strings = f.readlines()
@@ -29,5 +26,14 @@ def rebuild_theme():
             if theme.title_ru == spl[1]:
                 theme.summ +=1
 
+    json_list = []
     for i in themes:
-            print(i.title_ru, ' ', i.description, ' ', i.summ, '\n')
+            json_list.append({
+                'title_ru': i.title_ru,
+                'title_slug': i.title_slug,
+                'description': i.description,
+                'summ': i.summ,
+                'last_update': i.last_update
+            })
+    with open(theme_json_file, 'w') as file:
+        json.dump(json_list, file)
