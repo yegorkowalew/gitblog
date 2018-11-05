@@ -4,6 +4,11 @@ from datetime import datetime
 import time
 from settings import status_file
 from api.modules.rebuild_theme import rebuild_theme
+# from flask import send_from_directory
+from settings import theme_json_file
+import json
+import pickle
+
 api = Blueprint('api', __name__, template_folder='templates')
 
 tasks = [
@@ -46,7 +51,11 @@ def show(page):
 
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
-    return jsonify({'themes': tasks})
+    data = json.load(open(theme_json_file))
+    # data = pickle.load(open(theme_json_file,"r"))
+    return jsonify({'themes': data})
+
+
 
 @api.route('/v1.0/last_rebuild', methods=['GET'])
 def get_last_rebuild():

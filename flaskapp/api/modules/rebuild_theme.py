@@ -36,4 +36,4 @@ def rebuild_theme():
                 'last_update': i.last_update
             })
     with open(theme_json_file, 'w') as file:
-        json.dump(json_list, file)
+        json.dump(json_list, file, indent=2, ensure_ascii=False)
