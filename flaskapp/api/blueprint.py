@@ -3,7 +3,7 @@ import io
 from datetime import datetime
 import time
 from settings import status_file
-from api.modules.rebuild_theme import rebuild_theme
+from api.modules.rebuild_theme import rebuild_theme, rebuild_articles
 # from flask import send_from_directory
 from settings import theme_json_file
 import json
@@ -34,10 +34,16 @@ def show(page):
 
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
-    data = json.load(open(theme_json_file))
-    print(data)
-    return jsonify({'themes': data})
+    # data = json.load(open(theme_json_file))
+    return jsonify({'themes': rebuild_theme()})
 
+@api.route('/v1.0/articles', methods=['GET'])
+def get_articles():
+    articles = rebuild_articles()
+    if articles != False:
+        return jsonify({'articles': articles})
+    else:
+        return abort(404)
 
 @api.route('/v1.0/last_rebuild', methods=['GET'])
 def get_last_rebuild():
