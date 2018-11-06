@@ -4,7 +4,6 @@ from datetime import datetime
 import time
 from settings import status_file
 from api.modules.rebuild_theme import rebuild_theme
-# from flask import send_from_directory
 from settings import theme_json_file
 import json
 import pickle
@@ -35,7 +34,6 @@ def show(page):
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
     data = json.load(open(theme_json_file))
-    print(data)
     return jsonify({'themes': data})
 
 
