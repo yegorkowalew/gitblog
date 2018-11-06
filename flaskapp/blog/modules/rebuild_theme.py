@@ -13,12 +13,15 @@ class Theme:
         self.description = description
         self.summ = summ
         self.last_update = last_update
+        # self.img = img
     
 def rebuild_theme():
+    print('yo')
     themes = []
     f = open(theme_file)
     strings = f.readlines()
     for i in strings:
+        # print("/static/img/header/"+translit.slugify(i.split('=')[0])+'.jpg')
         theme = Theme(i.split('=')[0], translit.slugify(i.split('=')[0]), i.split('=')[1].rstrip('\n'))
         themes.append(theme)
     for directory in os.listdir(blog_folder):
@@ -34,7 +37,8 @@ def rebuild_theme():
             'title_slug': i.title_slug,
             'description': i.description,
             'summ': i.summ,
-            'last_update': i.last_update
+            'last_update': i.last_update,
+            'img': i.img
         })
     with open(theme_json_file, 'w') as file:
         json.dump(json_list, file, indent=2, ensure_ascii=False)

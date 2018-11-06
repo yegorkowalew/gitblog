@@ -33,6 +33,7 @@ def show(page):
 
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
+    time.sleep(1)
     data = json.load(open(theme_json_file))
     return jsonify({'themes': data})
 
