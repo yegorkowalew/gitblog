@@ -52,4 +52,7 @@ $( document ).ready(function() {
     showMenu();
     showArticles('all');
     // showArticles('domashnee');
+    $('nav-item').on('click', function() {
+        alert('yo')
+   });
 });
