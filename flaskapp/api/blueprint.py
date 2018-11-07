@@ -6,8 +6,6 @@ from settings import status_file
 from api.modules.rebuild_theme import rebuild_theme, rebuild_articles
 from settings import theme_json_file
 import json
-import pickle
-
 api = Blueprint('api', __name__, template_folder='templates')
 
 def rebuild_status(status_file):
@@ -36,21 +34,43 @@ def get_themes():
     # data = json.load(open(theme_json_file))
     return jsonify({'themes': rebuild_theme()})
 
-@api.route('/v1.0/articles_count', methods=['GET'])
-def get_articles_count():
+@api.route('/v1.0/articles_count/<theme>', methods=['GET'])
+def get_articles_count(theme):
     articles = rebuild_articles()
     if articles != False:
-        return jsonify({'articles_count': len(articles)})
+        if theme == 'all':
+            return jsonify({'articles_count': len(articles)})
+        else:
+            count = 0
+            for i in articles:
+                if i["theme_slug"] == theme:
+                    count += 1
+            if count > 0:
+                return jsonify({'articles_count': count})
+            else:
+                return abort(404)
     else:
         return abort(404)
 
-@api.route('/v1.0/article/<article_id>', methods=['GET'])
-def get_article(article_id):
+@api.route('/v1.0/article/<theme>/<article_id>', methods=['GET'])
+def get_article(theme, article_id):
     articles = rebuild_articles()
     if articles != False:
         try:
-            article_id = int(article_id)
-            return jsonify({'article': articles[article_id]})
+            if theme == 'all':
+                article_id = int(article_id)
+                article = articles[article_id]
+                article['last_update'] = article['last_update'].strftime("%Y.%m.%d %H:%M")
+                return jsonify({'article': article})
+            else:
+                theme_articles = []
+                for i in articles:
+                    if i['theme_slug'] == theme:
+                        theme_articles.append(i)
+                article_id = int(article_id)
+                article = theme_articles[article_id]
+                article['last_update'] = article['last_update'].strftime("%Y.%m.%d %H:%M")
+                return jsonify({'article': article})
         except (ValueError, IndexError) as identifier:
             print(identifier)
             return abort(404)

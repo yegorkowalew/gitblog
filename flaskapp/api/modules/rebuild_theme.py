@@ -31,6 +31,8 @@ def rebuild_articles():
                 'id':article_id,
                 'title_ru': spl[2],
                 'title_slug': translit.slugify(spl[2]),
+                'theme_ru': spl[1],
+                'theme_slug': translit.slugify(spl[1]),
                 'description': "description", # TODO Описание. Нужно открыть файл и скопировать с него первый абзац
                 'last_update': datetime.strptime(spl[0], '%Y-%m-%d %H-%M-%S'),
                 'img': 'img' # TODO Открыть папку и взять картинку.
