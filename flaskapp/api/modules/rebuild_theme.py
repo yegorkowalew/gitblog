@@ -24,15 +24,18 @@ class Theme:
 def rebuild_articles():
     json_list = []
     try:
+        article_id = 0
         for directory in os.listdir(blog_folder):
             spl = directory.split("=")
             json_list.append({
+                'id':article_id,
                 'title_ru': spl[2],
                 'title_slug': translit.slugify(spl[2]),
                 'description': "description", # TODO Описание. Нужно открыть файл и скопировать с него первый абзац
                 'last_update': datetime.strptime(spl[0], '%Y-%m-%d %H-%M-%S'),
                 'img': 'img' # TODO Открыть папку и взять картинку.
             })
+            article_id +=1
         return json_list
     except:
         return False

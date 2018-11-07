@@ -4,7 +4,6 @@ from datetime import datetime
 import time
 from settings import status_file
 from api.modules.rebuild_theme import rebuild_theme, rebuild_articles
-# from flask import send_from_directory
 from settings import theme_json_file
 import json
 import pickle
@@ -37,6 +36,27 @@ def get_themes():
     # data = json.load(open(theme_json_file))
     return jsonify({'themes': rebuild_theme()})
 
+@api.route('/v1.0/articles_count', methods=['GET'])
+def get_articles_count():
+    articles = rebuild_articles()
+    if articles != False:
+        return jsonify({'articles_count': len(articles)})
+    else:
+        return abort(404)
+
+@api.route('/v1.0/article/<article_id>', methods=['GET'])
+def get_article(article_id):
+    articles = rebuild_articles()
+    if articles != False:
+        try:
+            article_id = int(article_id)
+            return jsonify({'article': articles[article_id]})
+        except (ValueError, IndexError) as identifier:
+            print(identifier)
+            return abort(404)
+    else:
+        return abort(404)
+
 @api.route('/v1.0/articles', methods=['GET'])
 def get_articles():
     articles = rebuild_articles()
@@ -52,7 +72,7 @@ def get_last_rebuild():
 
 @api.route('/v1.0/rebuild', methods=['GET'])
 def get_rebuild():
-    rebuild_theme()
+    rebuild_theme() # TODO Сдесь нужно написать функцию которая будет делать git pull
     status = True
     rebuild = {
             'status': status
