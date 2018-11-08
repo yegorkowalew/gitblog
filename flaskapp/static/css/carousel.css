@@ -97,8 +97,37 @@ body {
 
 a {
   color: #F05F40;
+  
 }
 
 a:focus,a:hover {
-  color:#eb3812
+  color:#eb3812;
+  text-decoration:none;
  }
+
+/* class="btn btn-lg btn-primary" */
+/* .btn {
+  border-radius: 0;
+} */
+
+.btn-primary {
+  background-color: #eb6242;
+  border-color: #eb6242;
+}
+
+.btn-primary:focus, .btn-primary:hover, .btn-primary:active {
+  background-color: #eb3812;
+  border-color: #eb3812;
+  color:#fff;
+}
+
+.btn {
+  font-size: 14px;
+  border: none;
+  border-radius: 300px;
+  font-weight: 700;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  text-transform: uppercase;
+  padding: 12px 30px;
+}
+

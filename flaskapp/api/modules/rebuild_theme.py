@@ -12,8 +12,7 @@ class Theme:
                 description="", 
                 summ=0, 
                 last_update=datetime.strptime('2018-01-01 00-00-00', '%Y-%m-%d %H-%M-%S'),
-                img=""
-                ):
+                img=""):
         self.title_ru = title_ru
         self.title_slug = title_slug
         self.description = description
