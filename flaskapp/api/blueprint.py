@@ -9,19 +9,20 @@ import json
 api = Blueprint('api', __name__, template_folder='templates')
 
 def rebuild_status(status_file):
+    articles = rebuild_articles()
     last_rebuild = {}
     f = open(status_file)
     strings = f.readlines()
     last_datetime = datetime.strptime(strings[0], '%Y-%m-%d %H:%M')
-    now_datetime = datetime.now()
-    delta = (now_datetime - last_datetime).seconds // 3600
+    delta = (datetime.now() - last_datetime).seconds // 3600
     if delta >= 1:
         status = False
     else:
         status = True
     last_rebuild = {
-            'last_rebuild': last_datetime,
-            'status': status
+            'last_rebuild': last_datetime.strftime("%Y.%m.%d %H:%M"),
+            'updated': status,
+            'articles_count':len(articles)
             }
     return last_rebuild
 
@@ -86,8 +87,7 @@ def get_articles():
 
 @api.route('/v1.0/last_rebuild', methods=['GET'])
 def get_last_rebuild():
-    last_rebuild = rebuild_status(status_file)
-    return jsonify({'last_rebuild': last_rebuild})
+    return jsonify(rebuild_status(status_file))
 
 @api.route('/v1.0/rebuild', methods=['GET'])
 def get_rebuild():

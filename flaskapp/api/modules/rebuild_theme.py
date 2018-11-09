@@ -36,7 +36,6 @@ def rebuild_articles():
     try:
         article_id = 0
         for directory in os.listdir(blog_folder):
-            
             spl = directory.split("=")
             json_list.append({
                 'id':article_id,

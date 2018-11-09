@@ -48,6 +48,21 @@ function showArticles(theme) {
         console.log("error");
         });
 }
+function formatJSONDate(jsonDate) {
+    var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
+    return newDate;
+  }
+
+  var updated = false;
+
+function footer_content() {
+    $.getJSON( "/api/v1.0/last_rebuild", function(data) {
+        $('#articles_count').text(data.articles_count);
+        $('#last_rebuild').text(data.last_rebuild);
+        updated = data.updated;
+    })
+}
+
 $( document ).ready(function() {
     showMenu();
     showArticles('all');
@@ -70,4 +85,6 @@ $( document ).ready(function() {
         showArticles(thislink);
         return false;
       });
+      footer_content();
+      console.log(updated);
 });
