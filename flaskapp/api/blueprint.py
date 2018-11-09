@@ -31,7 +31,6 @@ def show(page):
 
 @api.route('/v1.0/themes', methods=['GET'])
 def get_themes():
-    # data = json.load(open(theme_json_file))
     return jsonify({'themes': rebuild_theme()})
 
 @api.route('/v1.0/articles_count/<theme>', methods=['GET'])

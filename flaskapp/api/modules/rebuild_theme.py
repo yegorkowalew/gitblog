@@ -20,11 +20,23 @@ class Theme:
         self.last_update = last_update
         self.img = img
 
+def to_description(path):
+    try:
+        fp = open(blog_folder+'/'+path+'/text.md', encoding="utf8")
+        for i, line in enumerate(fp):
+            if i == 0:
+                return line.splitlines()[0]
+    except BaseException as trabl:
+        # TODO записать ошибку в лог
+        # print(trabl)
+        return False
+
 def rebuild_articles():
     json_list = []
     try:
         article_id = 0
         for directory in os.listdir(blog_folder):
+            
             spl = directory.split("=")
             json_list.append({
                 'id':article_id,
@@ -32,7 +44,7 @@ def rebuild_articles():
                 'title_slug': translit.slugify(spl[2]),
                 'theme_ru': spl[1],
                 'theme_slug': translit.slugify(spl[1]),
-                'description': "description", # TODO Описание. Нужно открыть файл и скопировать с него первый абзац
+                'description': to_description(directory), #"description", # TODO Описание. Нужно открыть файл и скопировать с него первый абзац
                 'last_update': datetime.strptime(spl[0], '%Y-%m-%d %H-%M-%S'),
                 'img': 'img' # TODO Открыть папку и взять картинку.
             })
