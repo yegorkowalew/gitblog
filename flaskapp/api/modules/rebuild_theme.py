@@ -46,7 +46,7 @@ def rebuild_articles():
                 'theme_slug': translit.slugify(spl[1]),
                 'description': to_description(directory), #"description", # TODO Описание. Нужно открыть файл и скопировать с него первый абзац
                 'last_update': datetime.strptime(spl[0], '%Y-%m-%d %H-%M-%S'),
-                'img': 'img' # TODO Открыть папку и взять картинку.
+                'img': 'static/img/'+translit.slugify(spl[1])+'/'+translit.slugify(spl[2])+'/200x200.jpg' #'img' # TODO Открыть папку и взять картинку.
             })
             article_id +=1
         return json_list

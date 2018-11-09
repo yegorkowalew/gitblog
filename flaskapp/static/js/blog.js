@@ -38,7 +38,7 @@ function showArticles(theme) {
                   <div class="row justify-content-end text-muted">${data.article.last_update}</div>
                 </div>
                 <div class="col-md-3 order-md-1">
-                  <img class="featurette-image img-fluid mx-auto" src="http://placehold.it/200x200" alt="Generic placeholder image">
+                  <img class="featurette-image img-fluid mx-auto" src="/${data.article.img}" alt="Generic placeholder image">
                 </div>
               </div>
               <hr class="featurette-divider">`);
